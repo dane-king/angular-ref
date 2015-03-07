@@ -1,0 +1,14 @@
+{
+  "name": "my-angular-seed",
+  "version": "0.0.1",
+  "homepage": "https://github.com/dane-king/my-angular-seed",
+  "description": "Angular starter project",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

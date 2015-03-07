@@ -1,0 +1,19 @@
+{
+  "name": "my-angular-seed",
+  "version": "0.0.1",
+  "description": "Angular starter project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/dane-king/my-angular-seed.git"
+  },
+  "author": "Dane King",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dane-king/my-angular-seed/issues"
+  },
+  "homepage": "https://github.com/dane-king/my-angular-seed"
+}
