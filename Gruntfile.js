@@ -40,9 +40,9 @@ module.exports = function (grunt) {
     project: {
       src: 'src',
       app: 'app',
-      assets: '<%= project.app %>/assets',
+      assets: 'assets',
       css: [
-        '<%= project.src %>/scss/style.scss'
+        '<%= project.assets %>/scss/style.scss'
       ],
       js: [
         '<%= project.src %>/js/*.js'
@@ -143,7 +143,7 @@ module.exports = function (grunt) {
           banner: '<%= tag.banner %>'
         },
         files: {
-          '<%= project.assets %>/css/style.min.css': '<%= project.css %>'
+          '<%= project.assets %>/css/style.css': '<%= project.css %>'
         }
       },
       dist: {
@@ -152,7 +152,7 @@ module.exports = function (grunt) {
           banner: '<%= tag.banner %>'
         },
         files: {
-          '<%= project.assets %>/css/style.min.css': '<%= project.css %>'
+          '<%= project.assets %>/css/style.css': '<%= project.css %>'
         }
       }
     },
@@ -175,11 +175,11 @@ module.exports = function (grunt) {
      */
     watch: {
       concat: {
-        files: '<%= project.src %>/js/{,*/}*.js',
+        files: '<%= project.assets %>/js/{,*/}*.js',
         tasks: ['concat:dev', 'jshint']
       },
       sass: {
-        files: '<%= project.src %>/scss/{,*/}*.{scss,sass}',
+        files: '<%= project.assets %>/scss/{,*/}*.{scss,sass}',
         tasks: ['sass:dev']
       },
       livereload: {
