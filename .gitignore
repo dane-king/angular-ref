@@ -1,7 +1,8 @@
 node_modules
 /**/*/libs
-/**/*/vendor
+vendor
 .tmp
+dist
 .sass-cache
 /**/*/css
 scripts.min.js

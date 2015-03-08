@@ -1,223 +1,107 @@
-/*!
- * FireShell Gruntfile
- * http://getfireshell.com
- * @author Todd Motto
- */
+/*global module:false*/
+module.exports = function(grunt) {
+  'use strict';
 
-'use strict';
-
-/**
- * Livereload and connect variables
- */
-var LIVERELOAD_PORT = 35729;
-var lrSnippet = require('connect-livereload')({
-  port: LIVERELOAD_PORT
-});
-var mountFolder = function (connect, dir) {
-  return connect.static(require('path').resolve(dir));
-};
-
-/**
- * Grunt module
- */
-module.exports = function (grunt) {
-
-  /**
-   * Dynamically load npm tasks
-   */
-  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-
-  /**
-   * FireShell Grunt config
-   */
+  var globalConfig = {
+    baseSass: 'src/assets/sass',
+    baseStyles: 'src/assets/css'
+  };
+  // Project configuration.
   grunt.initConfig({
-
+    globalConfig: globalConfig,
+    // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-
-    /**
-     * Set project info
-     */
-    project: {
-      src: 'src',
-      app: 'app',
-      assets: 'assets',
-      css: [
-        '<%= project.assets %>/scss/style.scss'
-      ],
-      js: [
-        '<%= project.src %>/js/*.js'
-      ]
-    },
-
-    /**
-     * Project banner
-     * Dynamically appended to CSS/JS files
-     * Inherits text from package.json
-     */
-    tag: {
-      banner: '/*!\n' +
-              ' * <%= pkg.name %>\n' +
-              ' * <%= pkg.title %>\n' +
-              ' * <%= pkg.url %>\n' +
-              ' * @author <%= pkg.author %>\n' +
-              ' * @version <%= pkg.version %>\n' +
-              ' * Copyright <%= pkg.copyright %>. <%= pkg.license %> licensed.\n' +
-              ' */\n'
-    },
-
-    /**
-     * Connect port/livereload
-     * https://github.com/gruntjs/grunt-contrib-connect
-     * Starts a local webserver and injects
-     * livereload snippet
-     */
-    connect: {
-      options: {
-        port: 9000,
-        hostname: '*'
-      },
-      livereload: {
-        options: {
-          middleware: function (connect) {
-            return [lrSnippet, mountFolder(connect, 'app')];
-          }
-        }
-      }
-    },
-
-    /**
-     * JSHint
-     * https://github.com/gruntjs/grunt-contrib-jshint
-     * Manage the options inside .jshintrc file
-     */
-    jshint: {
-      files: ['src/js/*.js'],
-      options: {
-        jshintrc: '.jshintrc'
-      }
-    },
-
-    /**
-     * Concatenate JavaScript files
-     * https://github.com/gruntjs/grunt-contrib-concat
-     * Imports all .js files and appends project banner
-     */
-    concat: {
-      dev: {
+    browserify: {
+      app: {
         files: {
-          '<%= project.assets %>/js/scripts.min.js': '<%= project.js %>'
+          'dist/app.js': ['src/app/*.js']
         }
-      },
-      options: {
-        stripBanners: true,
-        nonull: true,
-        banner: '<%= tag.banner %>'
       }
     },
-
-    /**
-     * Uglify (minify) JavaScript files
-     * https://github.com/gruntjs/grunt-contrib-uglify
-     * Compresses and minifies all JavaScript files into one
-     */
+    bower: {
+      install: {
+        options: {
+          targetDir: 'vendor/bower_components',
+          layout: 'byComponent',
+          verbose: true,
+          cleanup: true
+        }
+      }
+    },
+    banner: '/*! <%= pkg.title || pkg.name %> - v<%= pkg.version %> - ' +
+      '<%= grunt.template.today("yyyy-mm-dd") %>\n' +
+      '<%= pkg.homepage ? "* " + pkg.homepage + "\\n" : "" %>' +
+      '* Copyright (c) <%= grunt.template.today("yyyy") %> <%= pkg.author.name %>;' +
+      ' Licensed <%= _.pluck(pkg.licenses, "type").join(", ") %> */\n',
+    // Task configuration.
+    concat: {
+      options: {
+        banner: '<%= banner %>',
+        stripBanners: true
+      },
+      dist: {
+        src: ['src/<%= pkg.name %>/**/*.js'],
+        dest: 'dist/<%= pkg.name %>/app.js'
+      }
+    },
     uglify: {
       options: {
-        banner: "<%= tag.banner %>"
+        banner: '<%= banner %>'
       },
       dist: {
-        files: {
-          '<%= project.assets %>/js/scripts.min.js': '<%= project.js %>'
-        }
+        src: '<%= concat.dist.dest %>',
+        dest: 'dist/<%= pkg.name %>.min.js'
       }
     },
-
-    /**
-     * Compile Sass/SCSS files
-     * https://github.com/gruntjs/grunt-contrib-sass
-     * Compiles all Sass/SCSS files and appends project banner
-     */
-    sass: {
-      dev: {
-        options: {
-          style: 'expanded',
-          banner: '<%= tag.banner %>'
-        },
-        files: {
-          '<%= project.assets %>/css/style.css': '<%= project.css %>'
-        }
+    jshint: {
+      options: {
+        jshintrc: '.jshintrc',
       },
-      dist: {
+      gruntfile: {
+        src: 'Gruntfile.js'
+      },
+      lib_test: {
+        src: ['src/**/*.js', 'test/**/*.js']
+      }
+    },
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec',
+          captureFile: 'results.txt', // Optionally capture the reporter output to a file
+          quiet: false, // Optionally suppress output to standard out (defaults to false)
+          clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
+        },
+        src: ['test/**/*.js']
+      }
+    },
+    sass: {
+      applyStyle: {
         options: {
           style: 'compressed',
-          banner: '<%= tag.banner %>'
+          sourceMap: true
         },
         files: {
-          '<%= project.assets %>/css/style.css': '<%= project.css %>'
+          '<%= globalConfig.baseStyles %>/style.css': '<%= globalConfig.baseSass %>/style.scss'
         }
-      }
+      },
     },
-
-    /**
-     * Opens the web server in the browser
-     * https://github.com/jsoverson/grunt-open
-     */
-    open: {
-      server: {
-        path: 'http://localhost:<%= connect.options.port %>'
-      }
-    },
-
-    /**
-     * Runs tasks against changed watched files
-     * https://github.com/gruntjs/grunt-contrib-watch
-     * Watching development files and run concat/compile tasks
-     * Livereload the browser once complete
-     */
     watch: {
-      concat: {
-        files: '<%= project.assets %>/js/{,*/}*.js',
-        tasks: ['concat:dev', 'jshint']
+      gruntfile: {
+        files: '<%= jshint.gruntfile.src %>',
+        tasks: ['jshint:gruntfile']
       },
-      sass: {
-        files: '<%= project.assets %>/scss/{,*/}*.{scss,sass}',
-        tasks: ['sass:dev']
-      },
-      livereload: {
-        options: {
-          livereload: LIVERELOAD_PORT
-        },
-        files: [
-          '<%= project.app %>/{,*/}*.html',
-          '<%= project.assets %>/css/*.css',
-          '<%= project.assets %>/js/{,*/}*.js',
-          '<%= project.assets %>/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
-        ]
+      lib_test: {
+        files: '<%= jshint.lib_test.src %>',
+        tasks: ['jshint:lib_test', 'qunit']
       }
     }
   });
 
-  /**
-   * Default task
-   * Run `grunt` on the command line
-   */
-  grunt.registerTask('default', [
-    'sass:dev',
-    'jshint',
-    'concat:dev',
-    'connect:livereload',
-    'open',
-    'watch'
-  ]);
+  // These plugins provide necessary tasks.
+  require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
-  /**
-   * Build task
-   * Run `grunt build` on the command line
-   * Then compress all JS/CSS files
-   */
-  grunt.registerTask('build', [
-    'sass:dist',
-    'jshint',
-    'uglify'
-  ]);
+  // Default task.
+  grunt.registerTask('default', ['jshint', 'mochaTest', 'concat', 'uglify', 'sass']);
 
 };
