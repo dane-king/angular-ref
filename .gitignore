@@ -1,2 +1,7 @@
 node_modules
-*.sublime-*
+/**/*/vendor
+.tmp
+.sass-cache
+style.min.css
+scripts.min.js
+.editorconfig
