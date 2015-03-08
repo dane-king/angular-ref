@@ -1,7 +1,8 @@
 node_modules
+/**/*/libs
 /**/*/vendor
 .tmp
 .sass-cache
-style.min.css
+/**/*/css
 scripts.min.js
 .editorconfig
