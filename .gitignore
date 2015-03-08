@@ -5,5 +5,4 @@ vendor
 dist
 .sass-cache
 /**/*/css
-scripts.min.js
 .editorconfig
