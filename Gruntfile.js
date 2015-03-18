@@ -11,17 +11,10 @@ module.exports = function(grunt) {
     globalConfig: globalConfig,
     // Metadata.
     pkg: grunt.file.readJSON('package.json'),
-    browserify: {
-      app: {
-        files: {
-          'dist/app.js': ['src/app/*.js']
-        }
-      }
-    },
     bower: {
       install: {
         options: {
-          targetDir: 'vendor/bower_components',
+          targetDir: 'app/libs',
           layout: 'byComponent',
           verbose: true,
           cleanup: true
@@ -72,7 +65,7 @@ module.exports = function(grunt) {
           quiet: false, // Optionally suppress output to standard out (defaults to false)
           clearRequireCache: false // Optionally clear the require cache before running tests (defaults to false)
         },
-        src: ['test/**/*.js']
+        src: ['tests/**/*.js']
       }
     },
     sass: {
