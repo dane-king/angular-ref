@@ -4,7 +4,7 @@ module.exports = function (grunt) {
 
     var globalConfig = {
         baseSass  : 'src/assets/sass',
-        baseStyles: 'src/app/css'
+        baseStyles: 'src/css'
     };
     // Project configuration.
     grunt.initConfig({
@@ -17,7 +17,7 @@ module.exports = function (grunt) {
         bower       : {
             install: {
                 options: {
-                    targetDir: 'src/app/libs',
+                    targetDir: 'src/<%= pkg.name %>/libs',
                     layout   : 'byComponent',
                     verbose  : true,
                     cleanup  : true
@@ -36,14 +36,20 @@ module.exports = function (grunt) {
             },
             dist   : {
                 src : ['src/<%= pkg.name %>/**/*.js'],
-                dest: 'dist/app.js'
+                dest: 'dist/<%= pkg.name %>.js'
             }
         },
         copy: {
             main: {
                 files: [
                     // includes files within path
-                    {expand: true, flatten:true, src: ['src/*.html','src/<%= pkg.name %>/**/*.css'], dest: 'dist/', filter: 'isFile'},
+                    {
+                        expand : true,
+                        flatten: true,
+                        src    : ['src/*.html', 'src/css/**/*.css'],
+                        dest   : 'dist/',
+                        filter : 'isFile'
+                    },
 
                     // includes files within path and its sub-directories
                     {expand: true,cwd: 'src/', src: ['libs/**/*'], dest: 'dist/'}
@@ -80,8 +86,7 @@ module.exports = function (grunt) {
         sass        : {
             applyStyle: {
                 options: {
-                    style    : 'compressed',
-                    sourceMap: true
+                    style: 'compressed'
                 },
                 files  : {
                     '<%= globalConfig.baseStyles %>/style.css': '<%= globalConfig.baseSass %>/style.scss'
@@ -104,6 +109,7 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'concat','copy', 'uglify', 'sass', 'karma']);
+    grunt.registerTask('default', ['jshint', 'concat', 'copy', 'uglify', 'sass']);
+    grunt.registerTask('test', ['jshint', 'karma']);
 
 };
