@@ -1,59 +1,38 @@
-<!doctype html>
-<html class="no-js">
-  <head>
-    <meta charset="utf-8">
-    <title>Angular Starter</title>
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="app" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="app" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="libs/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="libs/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="angular-example/app.css">
+  <script src="libs/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+  <ul class="menu">
+    <li><a href="#/view1">view1</a></li>
+    <li><a href="#/view2">view2</a></li>
+  </ul>
 
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
 
-    <link href="//www.google-analytics.com" rel="dns-prefetch">
-    <link href="//ajax.googleapis.com" rel="dns-prefetch">
-    <link href="assets/css/style.min.css" rel="stylesheet">
+  <div ng-view></div>
 
-    <script src="vendor/modernizr-2.6.2.min.js"></script>
+  <div>Angular seed app: v<span app-version></span></div>
 
-  </head>
-  <body>
-
-    <header class="header" role="banner">
-      <div class="logo">
-        <a href="/">
-          <img src="assets/img/logo.svg" alt="Logo">
-        </a>
-      </div>
-      <nav class="nav" role="navigation">
-        <ul>
-          <li>
-            <a href="/"></a>
-          </li>
-        </ul>
-      </nav>
-    </header>
-
-    <main class="main" role="main">
-
-    </main>
-
-    <aside class="sidebar" role="complementary">
-
-    </aside>
-
-    <footer class="footer" role="contentinfo">
-
-    </footer>
-
-    <script src="assets/js/scripts.min.js"></script>
-
-    <script>
-    (function(f,i,r,e,s,h,l){i['GoogleAnalyticsObject']=s;f[s]=f[s]||function(){
-    (f[s].q=f[s].q||[]).push(arguments)},f[s].l=1*new Date();h=i.createElement(r),
-    l=i.getElementsByTagName(r)[0];h.async=1;h.src=e;l.parentNode.insertBefore(h,l)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    ga('create', 'UA-XXXXXXXX-XX');
-    ga('send', 'pageview');
-    </script>
-
-  </body>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="libs/angular/angular.js"></script>
+  <script src="libs/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="app/app.js"></script>
+</body>
 </html>

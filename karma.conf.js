@@ -1,51 +1,35 @@
-// Karma configuration
-// Generated on Tue Mar 17 2015 08:50:53 GMT-0400 (EDT)
 
-module.exports = function(config) {
+module.exports = function(config){
   config.set({
 
+    basePath : './',
 
-    frameworks: ['mocha','chai'],
-
-
-      basePath : './',
-
-      files : [
-          'app/libs/angular/angular.js',
-          'app/libs/angular-ui-router/release/angular-ui-router.js',
-          'app/libs/angular-mocks/angular-mocks.js',
-          'app/components/**/*.js',
-          'app/view*/**/*.js',
-          'tests/**/*.js'
-      ],
-
-      exclude : [
-          'tests/e2e-tests/**/*'
-
-      ],
+    files : [
+      'src/libs/angular/angular.js',
+      'src/libs/angular-ui-router/release/angular-ui-router.js',
+      'src/libs/angular-mocks/angular-mocks.js',
+      'src/angular-example/**/*.js',
+      'tests/**/*.spec.js'
+    ],
 
 
-    preprocessors: {
-    },
+    autoWatch : true,
 
+    frameworks: ['jasmine'],
 
-    reporters: ['progress'],
+    browsers : ['Chrome'],
 
+    plugins : [
+      'karma-chrome-launcher',
+      'karma-firefox-launcher',
+      'karma-jasmine',
+      'karma-junit-reporter'
+    ],
 
-    port: 9876,
+    junitReporter : {
+      outputFile: 'test_out/unit.xml',
+      suite: 'unit'
+    }
 
-
-    colors: true,
-
-    logLevel: config.LOG_INFO,
-
-
-    autoWatch: true,
-
-
-    browsers: ['PhantomJS', 'Chrome'],
-
-
-    singleRun: false
   });
 };
