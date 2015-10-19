@@ -7,4 +7,5 @@ tmp
 /.sass-cache
 /temp.js
 /dist
+/angular-ref.iml
 .idea
