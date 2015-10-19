@@ -4,6 +4,7 @@ node_modules/
 bower_components/
 tmp
 .DS_Store
+/.sass-cache
 /temp.js
 /dist
 .idea
