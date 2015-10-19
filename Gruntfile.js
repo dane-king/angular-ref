@@ -43,19 +43,14 @@ module.exports = function (grunt) {
             main: {
                 files: [
                     // includes files within path
-                    {
-                        expand : true,
-                        flatten: true,
-                        src    : ['src/*.html', 'src/css/**/*.css'],
-                        dest   : 'dist/',
-                        filter : 'isFile'
-                    },
-
+                    {expand : true, flatten: false,cwd:'src/', src : ['*.html', 'css/**/*.css'], dest   : 'dist/', filter : 'isFile'},
+                    {expand:true,cwd:'src/<%= pkg.name %>', src:'**/*.html', dest:'dist/', filter:'isFile'},
                     // includes files within path and its sub-directories
                     {expand: true,cwd: 'src/', src: ['libs/**/*'], dest: 'dist/'}
                     ]
             }
         },
+        clean: ["dist/"],
         uglify      : {
             options: {
                 banner: '<%= banner %>',
@@ -109,7 +104,8 @@ module.exports = function (grunt) {
     require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
 
     // Default task.
-    grunt.registerTask('default', ['jshint', 'concat', 'copy', 'uglify', 'sass']);
+    grunt.registerTask('deploy', ['clean', 'concat', 'copy', 'uglify', 'sass']);
     grunt.registerTask('test', ['jshint', 'karma']);
+    grunt.registerTask('default', ['test','deploy']);
 
 };
