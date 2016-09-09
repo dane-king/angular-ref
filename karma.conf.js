@@ -1,4 +1,4 @@
-
+'use strict';
 module.exports = function(config){
   config.set({
 
@@ -10,10 +10,16 @@ module.exports = function(config){
       'vendor/angular-ui-router/release/angular-ui-router.js',
       'angular-example/app.module.js',
       'angular-example/**/*.js',
-      '../tests/**/*.spec.js'
+      '../tests/**/*.spec.js',
+      'views/**/*.html'
     ],
 
-
+    preprocessors: {
+      '**/*.html': ['ng-html2js']
+    },
+    ngHtml2JsPreprocessor: {
+      moduleName: 'ngTemplates'
+    },
     autoWatch : true,
 
     frameworks: ['jasmine'],
