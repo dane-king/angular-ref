@@ -2,14 +2,15 @@
 module.exports = function(config){
   config.set({
 
-    basePath : './',
+    basePath : 'src',
 
     files : [
-      'src/libs/angular/angular.js',
-      'src/libs/angular-ui-router/release/angular-ui-router.js',
-      'src/libs/angular-mocks/angular-mocks.js',
-      'src/angular-example/**/*.js',
-      'tests/**/*.spec.js'
+      'vendor/angular/angular.js',
+      'vendor/angular-mocks/angular-mocks.js',
+      'vendor/angular-ui-router/release/angular-ui-router.js',
+      'angular-example/app.module.js',
+      'angular-example/**/*.js',
+      '../tests/**/*.spec.js'
     ],
 
 
