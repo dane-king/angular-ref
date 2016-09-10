@@ -1,10 +1,11 @@
 /*global module:false*/
+'use strict';
 module.exports = function(grunt) {
-  'use strict';
+
 
   var globalConfig = {
-    baseSass: 'src/assets/sass',
-    baseStyles: 'src/css'
+    baseSass: 'app/assets/sass',
+    baseStyles: 'app/css'
   };
   // Project configuration.
   grunt.initConfig({
@@ -46,13 +47,13 @@ module.exports = function(grunt) {
           {
             expand: true,
             flatten: false,
-            cwd: 'src/',
+            cwd: 'app/',
             src: ['*.html', 'css/**/*.css'],
             dest: 'dist/',
             filter: 'isFile'
           }, {
             expand: true,
-            cwd: 'src/<%= pkg.name %>',
+            cwd: 'app/<%= pkg.name %>',
             src: '**/*.html',
             dest: 'dist/',
             filter: 'isFile'
@@ -60,7 +61,7 @@ module.exports = function(grunt) {
           // includes files within path and its sub-directories
           {
             expand: true,
-            cwd: 'src/',
+            cwd: 'app/',
             src: ['libs/**/*'],
             dest: 'dist/'
           }
@@ -86,7 +87,7 @@ module.exports = function(grunt) {
         src: 'Gruntfile.js'
       },
       lib_test: {
-        src: ['src/angular-example/**/*.js', '!src/libs/**/*', 'test/**/*.js']
+        src: ['app/angular-example/**/*.js', '!app/libs/**/*', 'test/**/*.js']
 
       }
     },
@@ -116,7 +117,7 @@ module.exports = function(grunt) {
       }
     },
     ngdocs: {
-      all: ['src/angular-example/**/*.js']
+      all: ['app/angular-example/**/*.js']
     }
   });
 
