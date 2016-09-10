@@ -1,6 +1,8 @@
 /* global __dirname */
 'use strict';
 var gulp=require('gulp'),
+clean=require('gulp-clean'),
+concat=require('gulp-concat'),
 Server = require('karma').Server,
 sass=require('gulp-sass'),
 jshint=require('gulp-jshint'),
@@ -36,4 +38,19 @@ gulp.task('sass',function () {
 
 gulp.task('sass:watch', function () {
   gulp.watch(sass_path,['sass']);
+});
+gulp.task('clean:dist',function(){
+  return gulp.src('./dist',{read:false})
+  .pipe(clean({force: true}));
+});
+gulp.task('copyAssets',function () {
+  gulp.src('src/index.html')
+  .pipe(gulp.dest('./dist'));
+});
+gulp.task('publish',['clean:dist','sass','concat','copyAssets']);
+
+gulp.task('concat',function () {
+  return gulp.src(js_path)
+  .pipe(concat('all.js'))
+  .pipe(gulp.dest('./dist'));
 });
