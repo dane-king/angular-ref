@@ -8,10 +8,8 @@ module.exports = function(config){
       'vendor/angular/angular.js',
       'vendor/angular-mocks/angular-mocks.js',
       'vendor/angular-ui-router/release/angular-ui-router.js',
-      'angular-example/app.module.js',
-      'angular-example/**/*.js',
-      '../tests/**/*.spec.js',
-      'views/**/*.html'
+      'app/**/*.js',
+      'tests/unit/**/*.spec.js'
     ],
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
