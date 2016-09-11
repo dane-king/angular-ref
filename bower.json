@@ -3,6 +3,9 @@
   "description": "An AngularJS reference project",
   "homepage":"",
   "version": "0.0.1",
+  "description": "A starter project for AngularJS",
+  "version": "0.0.0",
+  "homepage": "",
   "license": "MIT",
   "private": true,
   "dependencies": {
