@@ -1,7 +1,7 @@
 /* global __dirname */
 'use strict';
 var gulp=require('gulp'),
-clean=require('gulp-clean'),
+del=require('del'),
 concat=require('gulp-concat'),
 Server = require('karma').Server,
 sass=require('gulp-sass'),
@@ -40,17 +40,23 @@ gulp.task('sass:watch', function () {
   gulp.watch(sass_path,['sass']);
 });
 gulp.task('clean:dist',function(){
-  return gulp.src('./dist',{read:false})
-  .pipe(clean({force: true}));
+  del('dist');
 });
+
 gulp.task('copyAssets',function () {
   gulp.src('src/index.html')
   .pipe(gulp.dest('./dist'));
 });
-gulp.task('publish',['clean:dist','sass','concat','copyAssets']);
+
+gulp.task('copyLibs',function () {
+  gulp.src('src/vendor/**')
+  .pipe(gulp.dest('./dist/vendor'));
+});
+
+gulp.task('publish',['clean:dist','sass','concat','copyAssets','copyLibs']);
 
 gulp.task('concat',function () {
   return gulp.src(js_path)
-  .pipe(concat('all.js'))
+  .pipe(concat('app.grocery.js'))
   .pipe(gulp.dest('./dist'));
 });
