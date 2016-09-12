@@ -13,7 +13,7 @@ describe('description', function() {
   }));
   describe('Initialize', function() {
     it("should have an empty select list", function() {
-      expect(sc.selected).toEqual([]);
+      expect(sc.selected).toEqual({});
     });
     it("should have an items list equal to list passed in", function() {
       expect(sc.items).toEqual(getItems());
@@ -29,14 +29,13 @@ describe('description', function() {
 
     it("should add item to selected list when selected", function() {
       sc.select(firstItem);
-      expect(sc.selected).toContain(jasmine.objectContaining(firstItem));
+      expect(sc.selected[firstItem.id]).toEqual(firstItem);
     });
 
     it("should remove item when select is called twice", function() {
       sc.select(firstItem);
       sc.select(firstItem);
-      expect(sc.selected).not.toContain(jasmine.objectContaining(firstItem));
-
+      expect(sc.selected[firstItem.id]).not.toBeDefined();
     });
   });
 
