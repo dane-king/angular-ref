@@ -1,39 +1,17 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html lang="en" ng-app="grocery.app" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html lang="en" ng-app="grocery.app" class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html lang="en" ng-app="grocery.app" class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html lang="en" ng-app="app.grocery" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="app.grocery">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Grocery List Maker</title>
-  <base href="/">
-  <meta name="description" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="vendor/html5-boilerplate/dist/css/normalize.css">
-  <link rel="stylesheet" href="vendor/html5-boilerplate/dist/css/main.css">
-  <link rel="stylesheet" href="css/style.css">
-  <script src="vendor/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
 </head>
-<body>
-  <ul class="menu">
-    <li><a ui-sref="login">Login</a></li>
-  </ul>
-
-  <!--[if lt IE 7]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-  <![endif]-->
-
-  <div ui-view>Replace me</div>
-
-  <div>Angular seed app: v<span app-version></span></div>
-
-  <!-- In production use:
-  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
-  -->
-  <script src="vendor/angular/angular.js"></script>
-  <script src="vendor/angular-ui-router/release/angular-ui-router.js"></script>
-  <script src="app.grocery.js"></script>
+<body ng-controller="MainCtrl as mc" ng-cloak>
+Done
+{{mc}}
+{{mc.name}}
+<script src="./vendor/angular/angular.js" charset="utf-8"></script>
+<script src="./vendor/angular-ui-router/release/angular-ui-router.js" charset="utf-8"></script>
+<script src="./all.js" charset="utf-8"></script>
 </body>
 </html>

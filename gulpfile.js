@@ -57,6 +57,6 @@ gulp.task('publish',['clean:dist','sass','concat','copyAssets','copyLibs']);
 
 gulp.task('concat',function () {
   return gulp.src(js_path)
-  .pipe(concat('app.grocery.js'))
+  .pipe(concat('all.js'))
   .pipe(gulp.dest('./dist'));
 });

@@ -1,4 +1,5 @@
 (function() {
   'use strict';
-  angular.module('app.grocery', []);
+  angular.module('app.select',[]);
+  angular.module('app.grocery', ['app.select']);
 })();

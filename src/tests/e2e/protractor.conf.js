@@ -3,7 +3,7 @@ exports.config = {
   allScriptsTimeout: 11000,
 
   specs: [
-    '*.spec.js'
+    './**/*.spec.js'
   ],
 
   capabilities: {
