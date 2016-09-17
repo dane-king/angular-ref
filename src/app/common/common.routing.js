@@ -1,6 +1,6 @@
 (function() {
   'use strict';
-  angular.module('app.common',['ui.router'])
+  angular.module('app.common')
   .config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider.state('404',{
       url:'/404',
