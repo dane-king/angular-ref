@@ -22,7 +22,7 @@ module.exports = function(config){
     autoWatch : true,
 
     frameworks: ['jasmine'],
-    reporters: ['progress'],
+    reporters: ['jasmine-diff','progress'],
     junitReporter : {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
