@@ -1,4 +1,4 @@
 (function() {
   'use strict';
-  angular.module('app.select',['ui.router']);
+  angular.module('app.select',['ui.router','app.items']);
 })();

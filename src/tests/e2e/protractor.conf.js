@@ -1,20 +1,22 @@
-'use strict';
-exports.config = {
-  allScriptsTimeout: 11000,
+(function() {
+  'use strict';
+  exports.config = {
+    allScriptsTimeout: 11000,
 
-  specs: [
-    './**/*.spec.js'
-  ],
+    specs: [
+      './**/*.spec.js'
+    ],
 
-  capabilities: {
-    'browserName': 'chrome'
-  },
+    capabilities: {
+      'browserName': 'chrome'
+    },
 
-  baseUrl: 'http://localhost:8000',
+    baseUrl: 'http://localhost:8000',
 
-  framework: 'jasmine',
+    framework: 'jasmine',
 
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
-  }
-};
+    jasmineNodeOpts: {
+      defaultTimeoutInterval: 30000
+    }
+  };
+}());

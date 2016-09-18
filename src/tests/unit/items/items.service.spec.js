@@ -1,7 +1,7 @@
 (function() {
   'use strict';
   describe('Item Service', function() {
-    var itemsService,
+    var itemService,
       $httpBackend,
       resolveRequest,
       constants;
@@ -9,7 +9,7 @@
     beforeEach(module('app.items', 'app.common'));
 
     beforeEach(inject(function($injector) {
-      itemsService = $injector.get('itemsService');
+      itemService = $injector.get('itemService');
       $httpBackend = $injector.get('$httpBackend');
       var $rootScope = $injector.get('$rootScope');
 
@@ -48,9 +48,9 @@
       });
 
       it("should get a list of items when search", function() {
-        var promise = itemsService.search('bread');
+        var promise = itemService.search('bread');
         resolveRequest();
-        expect(itemsService.getItems()).toEqual([item1]);
+        expect(itemService.getItems()).toEqual([item1]);
       });
     });
 

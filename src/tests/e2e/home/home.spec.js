@@ -13,8 +13,14 @@
     it("should have correct title", function () {
       expect(home.getTitle()).toEqual('Grocery List');
     });
+
     it("should load home text", function () {
       expect(home.getHeader()).toEqual('Grocery List Creator');
+    });
+    it("should load items when clicking select navivation", function () {
+      home.goToPage("select");
+      expect(home.getFirstItem()).toEqual();
+
     });
   });
 }());

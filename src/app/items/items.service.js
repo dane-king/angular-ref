@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function itemsService($http, usda_url) {
+  function itemService($http, usda_url) {
     var found_items = [];
 
     function parseSearch(response){
@@ -27,7 +27,7 @@
       search: search
     };
   }
-  itemsService.$inject = ['$http', 'usda_url'];
+  itemService.$inject = ['$http', 'usda_url'];
   angular.module('app.items')
-    .factory('itemsService', itemsService);
+    .factory('itemService', itemService);
 }());
