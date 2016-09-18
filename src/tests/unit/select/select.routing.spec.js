@@ -1,9 +1,11 @@
 (function() {
   'use strict';
-  describe('description', function() {
+  describe('Select Routing', function() {
     var $state, $location, $rootScope, itemService;
 
     beforeEach(module('app.select'));
+
+    //example of mocking provider
     beforeEach(module('app.items', function($provide) {
       $provide.value('itemService', itemService={getItems:angular.noop,stub:angular.noop});
     }));
@@ -15,10 +17,10 @@
 
       spyOn(itemService, "getItems");
 
-      $templateCache.put('select.tpl.html', '');
+      $templateCache.put('views/select.tpl.html', '');
     }));
 
-    fit("should go to select page when route is activated", function() {
+    it("should go to select page when route is activated", function() {
       $state.go('select');
       $rootScope.$digest();
       expect($state.current.url).toEqual('/select');

@@ -1,7 +1,7 @@
 (function() {
   'use strict';
 
-  function itemService($http, usda_url) {
+  function itemService($http, usda_url, usda_key) {
     var found_items = [];
 
     function parseSearch(response){
@@ -11,10 +11,14 @@
         return found_items;
       }
 
-    function buildParams(term, key) {}
+    function buildParams(term) {
+      var search='&q=' + term;
+      search+="&api_key=" + usda_key;
+      return search;
+    }
 
     function search(term) {
-      return $http.get(usda_url)
+      return $http.get(usda_url + buildParams(term))
         .then(parseSearch);
     }
 
@@ -27,7 +31,7 @@
       search: search
     };
   }
-  itemService.$inject = ['$http', 'usda_url'];
+  itemService.$inject = ['$http', 'usda_url','usda_key'];
   angular.module('app.items')
     .factory('itemService', itemService);
 }());

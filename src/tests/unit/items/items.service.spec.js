@@ -13,10 +13,9 @@
       $httpBackend = $injector.get('$httpBackend');
       var $rootScope = $injector.get('$rootScope');
 
-      var usda_url = $injector.get('usda_url');
-
       constants = {
-        url: usda_url
+        url: $injector.get('usda_url'),
+        key:$injector.get('usda_key')
       };
 
       resolveRequest=function(){
@@ -32,7 +31,7 @@
 
     describe('Search', function() {
       beforeEach(function() {
-        $httpBackend.expectGET(constants.url).respond({
+        $httpBackend.expectGET(constants.url + '&q=bread&api_key='+ constants.key).respond({
           "list": {
             "q": "searh term",
             "sr": "28",

@@ -1,24 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="app.grocery" ng-strict-di>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
-  <title>Grocery List</title>
-</head>
-<body ng-cloak>
-  <section>
-    <nav>
-      <ul>
-        <li><a ui-sref="home"></a>Home</li>
-        <li><a ui-sref="select"></a>Select Items</li>
-      </ul>
-    </nav>
-    <ui-view></ui-view>
-  </section>
-<script src="./vendor/angular/angular.js" charset="utf-8"></script>
-<script src="./vendor/angular-ui-router/release/angular-ui-router.js" charset="utf-8"></script>
-<script src="./all.js" charset="utf-8"></script>
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/css/style.css" media="screen" title="no title" charset="utf-8">
+    <title>Grocery List</title>
+  </head>
+  <body >
+
+    <section>
+      <nav>
+        <ul>
+          <li>
+            <a ui-sref="home">Home</a>
+          </li>
+          <li>
+            <a ui-sref="select">Select Items</a>
+          </li>
+        </ul>
+      </nav>
+      <ui-view></ui-view>
+    </section>
+    <script src="./vendor/angular/angular.js" charset="utf-8"></script>
+    <script src="./vendor/angular-ui-router/release/angular-ui-router.js" charset="utf-8"></script>
+    <script src="./all.js" charset="utf-8"></script>
+  </body>
 </html>
