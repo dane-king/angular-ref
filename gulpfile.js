@@ -37,23 +37,23 @@ gulp.task('sass',function () {
 });
 
 gulp.task('sass:watch', function () {
-  gulp.watch(sass_path,['sass']);
+  return gulp.watch(sass_path,['sass']);
 });
-gulp.task('clean:dist',function(){
-  del('dist');
+gulp.task('clean:dist1',function(){
+  del.sync('./dist');
 });
 
 gulp.task('copyAssets',function () {
-  gulp.src(['src/index.html','src/app/**/*.html'])
+  return gulp.src(['src/index.html','src/app/**/*.html'])
   .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('copyLibs',function () {
-  gulp.src('src/vendor/**')
+  return gulp.src('src/vendor/**')
   .pipe(gulp.dest('./dist/vendor'));
 });
 
-gulp.task('publish',['clean:dist','sass','concat','copyAssets','copyLibs']);
+gulp.task('publish',['clean:dist1','sass','concat','copyAssets','copyLibs']);
 
 gulp.task('concat',function () {
   return gulp.src(js_path)
