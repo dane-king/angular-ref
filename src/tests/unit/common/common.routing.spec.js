@@ -19,11 +19,20 @@
         $location.url(page);
         $rootScope.$digest();
       };
-    }));
 
-    describe('Otherwise`', function() {
+    }));
+    describe('Initial State', function() {
       beforeEach(function () {
-        mockTemplates('notFound.tpl.html');
+        mockTemplates('views/home.tpl.html');
+      });
+      it("should go to home state when initial loaded", function () {
+        goTo();
+        expect($state.current.name).toEqual('home');
+      });
+    });
+    describe('Otherwise', function() {
+      beforeEach(function () {
+        mockTemplates('views/notFound.tpl.html');
       });
 
       it("should go to 404 when not page is not found", function() {

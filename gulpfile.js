@@ -44,7 +44,7 @@ gulp.task('clean:dist',function(){
 });
 
 gulp.task('copyAssets',function () {
-  gulp.src('src/index.html')
+  gulp.src(['src/index.html','src/app/**/*.html'])
   .pipe(gulp.dest('./dist'));
 });
 

@@ -1,7 +1,6 @@
 (function() {
   'use strict';
-  angular.module('app.select')
-  .controller('SelectCtrl', SelectCtrl);
+
 
   function SelectCtrl(items){
     this.selected={};
@@ -17,4 +16,7 @@
       }
     };
   }
+  SelectCtrl.$inject=['items'];
+  angular.module('app.select')
+  .controller('SelectCtrl', SelectCtrl);
 })();

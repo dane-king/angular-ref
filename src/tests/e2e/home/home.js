@@ -1,18 +1,27 @@
-/* globals browser*/
-'use strict';
+(function() {
+  'use strict';
 
-function init(){
-  browser.get('index.html');
-}
-
-function home(){
-  function getTitle(){
-    return browser.getTitle();
+  function init(){
+    browser.get('index.html');
   }
-  return {
-    goToPage:init,
-    getTitle:getTitle
-  };
-}
 
-module.exports = home();
+  function home(){
+    var header=element(by.css('h2'));
+    function getHeader(){
+      return header.getText();
+    }
+    function getTitle(){
+      return browser.getTitle();
+    }
+    return {
+      init:init,
+      getHeader:getHeader,
+      goToPage:function () {
+
+      },
+      getTitle:getTitle
+    };
+  }
+
+  module.exports = home();
+}());
