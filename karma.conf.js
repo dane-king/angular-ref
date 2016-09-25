@@ -41,6 +41,7 @@ module.exports = function(config){
     concurrency: Infinity
   });
   if(process.env.TRAVIS){
+    console.log('running on travis');
     config.browsers=['Chrome_travis_ci'];
   }
 };
