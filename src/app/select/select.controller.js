@@ -2,11 +2,19 @@
   'use strict';
 
 
-  function SelectCtrl(items){
+  function SelectCtrl(itemService){
+    var vm=this;
+
     this.selected={};
+    this.items=[];
 
-    this.items=items;
+    this.term="";
 
+    this.search=function () {
+      itemService.search(vm.term).then(function (data) {
+        vm.items=data;
+      });
+    };
     this.select=function(item){
       var found=this.selected[item.id];
       if(found){
@@ -16,7 +24,7 @@
       }
     };
   }
-  SelectCtrl.$inject=['items'];
+  SelectCtrl.$inject=['itemService'];
   angular.module('app.select')
   .controller('SelectCtrl', SelectCtrl);
 })();

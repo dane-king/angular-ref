@@ -25,10 +25,5 @@
       $rootScope.$digest();
       expect($state.current.url).toEqual('/select');
     });
-    it("should call get item service ", function() {
-      $state.go('select');
-      $rootScope.$digest();
-      expect(itemService.getItems).toHaveBeenCalled();
-    });
   });
 }());

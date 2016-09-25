@@ -6,7 +6,6 @@
 
   describe('Grocery List Application', function() {
     beforeEach(function () {
-      console.log(home);
       home.init();
     });
 

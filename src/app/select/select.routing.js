@@ -9,11 +9,7 @@
     $stateProvider.state('select',{
       url:'/select',
       templateUrl:'views/select.tpl.html',
-      controller:'SelectCtrl',
-      controllerAs:'sc',
-      resolve:{
-        items:getItemsFromService
-      }
+      controller:'SelectCtrl as sc'
     });
   }
   selectRoute.$inject=['$stateProvider'];

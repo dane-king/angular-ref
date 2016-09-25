@@ -1,57 +1,70 @@
 (function() {
   'use strict';
   describe('description', function() {
-    var selectController, scope, sc;
-    beforeEach(module('app.select'));
+    var selectController, scope,itemService, $rootScope;
+    beforeEach(module('app.select', 'app.common'));
 
-    beforeEach(inject(function($rootScope, $controller) {
+    beforeEach(inject(function($q, _$rootScope_, $controller, _itemService_) {
+
+      var successPromise=$q.defer();
+      successPromise.resolve(items);
+      spyOn(_itemService_,"search").and.returnValue(successPromise.promise);
+
+      itemService=_itemService_;
+
+      $rootScope=_$rootScope_;
       scope = $rootScope.$new();
-      var _items = getItems();
       selectController = $controller('SelectCtrl as sc', {
         $scope: scope,
-        items: _items
+        items: _itemService_
       });
-      sc = scope.sc;
     }));
 
     describe('Initialize', function() {
       it("should have an empty select list", function() {
-        expect(sc.selected).toEqual({});
+        expect(scope.sc.selected).toEqual({});
       });
-      it("should have an items list equal to list passed in", function() {
-        var items = getItems();
-        expect(sc.items).toEqual(items);
+    });
+    describe('Search', function() {
+      var term;
+      beforeEach(function () {
+        term="searchTerm";
+        scope.sc.term=term;
+        scope.sc.search();
+        $rootScope.$digest();
       });
-
+      it("should search items when changed", function () {
+        expect(itemService.search).toHaveBeenCalledWith(term);
+      });
+      it("should update items when searched", function () {
+        expect(scope.sc.items).toEqual(items);
+      });
     });
     describe('Selecting', function() {
-      var firstItem, items;
+      var firstItem;
       beforeEach(function() {
-        items = getItems();
-        firstItem = sc.items[0];
+        firstItem = items[0];
       });
 
       it("should add item to selected list when selected", function() {
-        sc.select(firstItem);
-        expect(sc.selected[1]).toEqual(firstItem);
+        scope.sc.select(firstItem);
+        expect(scope.sc.selected[1]).toEqual(firstItem);
       });
 
       it("should remove item when select is called twice", function() {
-        sc.select(firstItem);
-        sc.select(firstItem);
-        expect(sc.selected[1]).not.toBeDefined();
+        scope.sc.select(firstItem);
+        scope.sc.select(firstItem);
+        expect(scope.sc.selected[1]).not.toBeDefined();
 
       });
     });
 
-    function getItems() {
-      return [{
+    var items = [{
         id: 1,
         name: 'One'
       }, {
         id: 2,
         name: 'Two'
       }];
-    }
   });
 }());

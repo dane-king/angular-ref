@@ -1,8 +1,12 @@
 <div>
   <label for="search">Search for Items</label>
-  <input type="text" name="search" value="">
+  <input type="text" name="search" ng-model="sc.term" >
+  <!--ng-change="sc.search()"-->
+  <button type="button" class="btn btn-default" ng-click="sc.search()">
+Search
+  </button>
 <ul>
-  <li ng-repeat="item in sc.items">{{item}}</li>
+  <li ng-repeat="item in sc.items">{{item.name}}</li>
 
 </ul>
 
