@@ -1,5 +1,5 @@
-'use strict';
 module.exports = function(config){
+  'use strict';
   config.set({
 
     basePath : 'src',
@@ -31,7 +31,16 @@ module.exports = function(config){
     colors: true,
     logLevel: config.LOG_INFO,
     browsers: ['Chrome'],
+    customLaunchers:{
+      Chrome_travis_ci:{
+        base:'Chrome',
+        flags:['--no-sandbox']
+      }
+    },
     singleRun: false,
     concurrency: Infinity
   });
+  if(process.env.TRAVIS){
+    config.browsers=['Chrome_travis_ci'];
+  }
 };
