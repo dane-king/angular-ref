@@ -6,5 +6,4 @@
   defaultLoad.$inject=['$state'];
   angular.module('app.grocery', ['app.select','app.common'])
   .run(defaultLoad);
-
-})();
+}());

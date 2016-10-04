@@ -34,7 +34,7 @@ function config($locationProvider, $stateProvider, API_DATA, GUIDE_DATA, $urlRou
         controller: 'ApiController as ctrl',
       }
     }
-  }
+};
 
   var guideState = {
     name: 'guide',

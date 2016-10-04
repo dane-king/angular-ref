@@ -49,7 +49,6 @@ module.exports = function apiPagesProcessor(moduleMap) {
                     name: moduleName
                 });
 
-                console.log(docs);
                 if (!moduleDoc) return;
 
                 return buildDocData(moduleDoc, {

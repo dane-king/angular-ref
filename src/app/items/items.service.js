@@ -1,6 +1,20 @@
 (function() {
   'use strict';
-
+  /**
+   * @ngdoc service
+   * @name itemService
+   * @module app.items
+   *
+   * @description Provides HTTP methods to the USDA api.
+   *
+   * ## Lorem Ipsum 1
+   * Aenean ornare odio elit, eget facilisis ipsum molestie ac. Nam bibendum a nibh ut ullamcorper.
+   * Donec non felis gravida, rutrum ante mattis, sagittis urna. Sed quam quam, facilisis vel cursus at.
+   *
+   * ## Lorem Ipsum 2
+   * Aenean ornare odio elit, eget facilisis ipsum molestie ac. Nam bibendum a nibh ut ullamcorper.
+   * Donec non felis gravida, rutrum ante mattis, sagittis urna. Sed quam quam, facilisis vel cursus at.
+   */
   function itemService($http, usda_url, usda_key) {
     var found_items = [];
 

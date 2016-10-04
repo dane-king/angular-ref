@@ -9,7 +9,7 @@
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.9",
-    "canonical-path": "0.0.2",
+    "canonical-path": "^0.0.2",
     "del": "^2.2.2",
     "dgeni": "^0.4.2",
     "dgeni-packages": "^0.16.0",
