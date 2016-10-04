@@ -9,7 +9,10 @@
   "license": "MIT",
   "devDependencies": {
     "bower": "^1.7.9",
+    "canonical-path": "0.0.2",
     "del": "^2.2.2",
+    "dgeni": "^0.4.2",
+    "dgeni-packages": "^0.16.0",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-jshint": "^2.0.1",
@@ -24,6 +27,7 @@
     "karma-jasmine-diff-reporter": "^0.6.2",
     "karma-junit-reporter": "^1.1.0",
     "karma-ng-html2js-preprocessor": "^1.0.0",
+    "lodash": "^4.16.3",
     "protractor": "^4.0.5"
   },
   "scripts": {

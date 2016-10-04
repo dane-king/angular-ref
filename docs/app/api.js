@@ -1,0 +1,12 @@
+(function() {
+  'use strict';
+  angular.module('docs')
+  .controller('ApiController', ApiController);
+
+  function ApiController(API_DATA) {
+    var ctrl=this;
+    console.log(API_DATA);
+    ctrl.allPages=API_DATA;
+  }
+  ApiController.$inject=['API_DATA'];
+}());
