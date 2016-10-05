@@ -5,7 +5,6 @@
  * @ngdoc module
  * @name app.items
  * @module app.items
- *
  * @description
  *
  * This is the items module. It is the module to get items from the API.
