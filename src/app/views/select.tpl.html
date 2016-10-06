@@ -6,7 +6,10 @@
 Search
   </button>
 <ul>
-  <li ng-repeat="item in sc.items">{{item.name}}</li>
+  <li ng-repeat="item in sc.items track by $index">
+    hey
+    <dk-item data-item="item"/>
+  </li>
 
 </ul>
 

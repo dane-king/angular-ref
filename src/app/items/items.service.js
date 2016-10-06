@@ -30,7 +30,6 @@
       search+="&api_key=" + usda_key;
       return search;
     }
-
     function search(term) {
       return $http.get(usda_url + buildParams(term))
         .then(parseSearch);

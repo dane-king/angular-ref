@@ -44,13 +44,16 @@
             "item": [item1]
           }
         });
+
+        var promise = itemService.search('bread');
+        resolveRequest();
+
       });
 
       it("should get a list of items when search", function() {
-        var promise = itemService.search('bread');
-        resolveRequest();
         expect(itemService.getItems()).toEqual([item1]);
       });
+
     });
 
     var item1 = {

@@ -1,8 +1,16 @@
 @import 'reset';
-
 $font-stack: Helvetica, sans-serif;
-$primary-color:#333;
-
-body{
-  font:100% $font-stack;
+$primary-color: #333;
+body {
+  font: 100% $font-stack;
+}
+nav {
+  float: left;
+  padding-right: 5%;
+}
+li {
+  padding: 5px 0;
+}
+.clear {
+  clear: both;
 }

@@ -55,16 +55,19 @@
         scope.sc.select(firstItem);
         scope.sc.select(firstItem);
         expect(scope.sc.selected[1]).not.toBeDefined();
-
+      });
+      it("should filter out upc`", function () {
+        var  upc=scope.sc.getUpc(firstItem.name);
+        expect(upc).toEqual('123456789012');
       });
     });
 
     var items = [{
         id: 1,
-        name: 'One'
+        name: 'Item One, UPC: 123456789012'
       }, {
         id: 2,
-        name: 'Two'
+        name: 'Item Two, UPC: 123456789044'
       }];
   });
 }());
